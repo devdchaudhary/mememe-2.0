@@ -22,6 +22,8 @@
 		A56BCAF0208413AA00046370 /* TableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56BCAEF208413AA00046370 /* TableCell.swift */; };
 		A5C0BB182097D05400BC1A00 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C0BB172097D05400BC1A00 /* CollectionViewController.swift */; };
 		A5C0BB1A2097D06F00BC1A00 /* CollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C0BB192097D06F00BC1A00 /* CollectionCell.swift */; };
+		B6EC6E792A3FDDBA002E371A /* ImageDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6EC6E782A3FDDBA002E371A /* ImageDataModel.swift */; };
+		B6EC6E7B2A3FDDC7002E371A /* ToolTipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6EC6E7A2A3FDDC7002E371A /* ToolTipViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +65,8 @@
 		A56BCAEF208413AA00046370 /* TableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableCell.swift; sourceTree = "<group>"; };
 		A5C0BB172097D05400BC1A00 /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 		A5C0BB192097D06F00BC1A00 /* CollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionCell.swift; sourceTree = "<group>"; };
+		B6EC6E782A3FDDBA002E371A /* ImageDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDataModel.swift; sourceTree = "<group>"; };
+		B6EC6E7A2A3FDDC7002E371A /* ToolTipViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolTipViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +125,7 @@
 				A5C0BB192097D06F00BC1A00 /* CollectionCell.swift */,
 				A56BCAE9208404F900046370 /* TableViewController.swift */,
 				A56BCAEF208413AA00046370 /* TableCell.swift */,
+				B6EC6E772A3FDDAF002E371A /* ToolTip */,
 				A53DD6E1207D416400FBB99E /* Main.storyboard */,
 				A53DD6E7207D416400FBB99E /* Assets.xcassets */,
 				A53DD6E9207D416400FBB99E /* LaunchScreen.storyboard */,
@@ -147,6 +152,15 @@
 				A53DD702207D416400FBB99E /* Info.plist */,
 			);
 			path = MemeMeUITests;
+			sourceTree = "<group>";
+		};
+		B6EC6E772A3FDDAF002E371A /* ToolTip */ = {
+			isa = PBXGroup;
+			children = (
+				B6EC6E782A3FDDBA002E371A /* ImageDataModel.swift */,
+				B6EC6E7A2A3FDDC7002E371A /* ToolTipViewController.swift */,
+			);
+			path = ToolTip;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -285,8 +299,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				A53DD6E6207D416400FBB99E /* MemeMe.xcdatamodeld in Sources */,
+				B6EC6E792A3FDDBA002E371A /* ImageDataModel.swift in Sources */,
 				A53DD70F207D41A800FBB99E /* Meme.swift in Sources */,
 				A5C0BB1A2097D06F00BC1A00 /* CollectionCell.swift in Sources */,
+				B6EC6E7B2A3FDDC7002E371A /* ToolTipViewController.swift in Sources */,
 				A53DD6E0207D416400FBB99E /* ViewController.swift in Sources */,
 				A56BCAF0208413AA00046370 /* TableCell.swift in Sources */,
 				A5C0BB182097D05400BC1A00 /* CollectionViewController.swift in Sources */,

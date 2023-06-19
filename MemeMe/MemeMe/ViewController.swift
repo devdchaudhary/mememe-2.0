@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Foundation
+import ImageIO
 
 class ViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate {
     
@@ -19,6 +19,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     
     //Bottom Toolbar + Camera Button
     
+    @IBOutlet weak var infoButton: UIBarButtonItem!
     @IBOutlet weak var bottomBar: UIToolbar!
     @IBOutlet weak var bottomTextField: UITextField!
     @IBOutlet weak var cameraButton: UIBarButtonItem!
@@ -27,7 +28,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     // Main Function that displays the view
     
     @IBOutlet weak var memeView: UIImageView!
-    
+        
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -68,6 +69,37 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         super.viewWillAppear(animated)
         unsubscribeToKeyboardNotifications()
         
+    }
+    
+    // Show Image Info
+    
+    @IBAction func showImageInfo(_ sender: Any) {
+        
+        let popoverContentController = self.storyboard?.instantiateViewController(withIdentifier: "tooltipVC") as? ToolTipViewController
+        popoverContentController?.modalPresentationStyle = .popover
+        
+        if let image = memeView.image {
+            
+            if let metaData = getMetadataFromImage(image) {
+                
+                let imageData = ImageDataModel(data: metaData)
+                popoverContentController?.imageData = imageData
+                
+            }
+        }
+            
+        /* 3 */
+        // Present popover
+        if let popoverPresentationController = popoverContentController?.popoverPresentationController {
+            popoverPresentationController.permittedArrowDirections = .up
+            popoverPresentationController.sourceView = self.view
+            popoverPresentationController.sourceRect = .init(x: self.view.frame.midX - 20, y: 0, width: 50, height: 50)
+            popoverPresentationController.delegate = self
+            if let popoverController = popoverContentController {
+                present(popoverController, animated: true, completion: nil)
+            }
+            
+        }
     }
     
     // Image generation methods
@@ -218,7 +250,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
         
         let memedImage : UIImage = UIGraphicsGetImageFromCurrentImageContext()!
-        
+                        
         UIGraphicsEndImageContext()
         
         topBar.isHidden = false
@@ -229,6 +261,23 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         
         return memedImage
         
+    }
+    
+    func getMetadataFromImage(_ image: UIImage) -> [String: Any]? {
+        
+        guard let imageData = UIImageJPEGRepresentation(image, 1.0) else {
+            return nil
+        }
+        
+        guard let source = CGImageSourceCreateWithData(imageData as CFData, nil) else {
+            return nil
+        }
+        
+        guard let metadata = CGImageSourceCopyPropertiesAtIndex(source, 0, nil) as? [String: Any] else {
+            return nil
+        }
+        
+        return metadata
     }
     
     // Sharing Method
@@ -270,6 +319,22 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     
         dismiss(animated: true, completion: nil)
         
+    }
+    
+}
+
+extension ViewController: UIPopoverPresentationControllerDelegate {
+    
+    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+        return .none
+    }
+    
+    func popoverPresentationControllerDidDismissPopover(_ popoverPresentationController: UIPopoverPresentationController) {
+        
+    }
+    
+    func popoverPresentationControllerShouldDismissPopover(_ popoverPresentationController: UIPopoverPresentationController) -> Bool {
+        return true
     }
     
 }
